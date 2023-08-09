@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_food_production_request" name="Production Request" sequence="35" web_icon="dsl_food_production_request,static/description/icon.png"/> 
+    <menuitem id='menu_food_production_request_order' parent='menu_food_production_request' name="Request Order" action='dsl_food_production_request_action' sequence="1"/>
+    <menuitem id='menu_food_production_request_order_settings' parent='menu_food_production_request' name="User Settings" action='action_stock_food_production_request_config' sequence="1"/>
+
+</odoo>

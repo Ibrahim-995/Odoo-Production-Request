@@ -1,0 +1,90 @@
+<odoo>
+    <data>
+        <report
+            id="report_production_request"
+            model="store.food_production_request"
+            string="Request Report"
+            report_type="qweb-pdf"
+            name="dsl_food_production_request.production_request_template"
+            file="dsl_food_production_request.production_request_template"
+            attachment_use="False"
+        />
+
+        <template id="production_request_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h3 style="text-align: center;">Production Request Details</h3>
+                            <table class="table">
+                                <tr>
+                                    <th scope="row">Request ID:</th>
+                                    <td colspan="3"><span t-field="doc.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Employee Name:</th>
+                                    <td colspan="3"><span t-field="doc.employee"/></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Department:</th>
+                                    <td colspan="3"><span t-field="doc.department"/></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Issue Date:</th>
+                                    <td colspan="3"><span t-field="doc.create_date"/></td>
+                                </tr>
+                            </table>
+
+                            <h3 style="text-align: center;">Item Details</h3>
+                            <table class="table">
+                                <tr>
+                                    <th scope="row">Item</th>
+                                    <th scope="row">Unit of Measure</th>
+                                    <th scope="row">Quantity</th>
+                                </tr>
+                                <t t-foreach="doc.requsition_line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id"/></td>
+                                        <td><span t-field="line.uom_id"/></td>
+                                        <td><span t-field="line.quantity"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <h3 style="text-align: center;">Request Tracking</h3>
+                            <table class="table">
+                                <tr>
+                                    <th scope="row">Requested by</th>
+                                    <th scope="row">Accepted by</th>
+                                    <th scope="row">Approved by</th>
+                                    <th scope="row">Delivered by</th>
+                                    <th scope="row">Received by</th>
+                                    <th scope="row">Rejected by</th>
+                                </tr>
+
+                                <tr>
+                                    <td><span t-field="doc.requested_by"/></td>
+                                    <td><span t-field="doc.confirmed_by"/></td>
+                                    <td><span t-field="doc.approved_by"/></td>
+                                    <td><span t-field="doc.delivered_by"/></td>
+                                    <td><span t-field="doc.received_by"/></td>
+                                    <td><span t-field="doc.rejected_by"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><span t-field="doc.requested_date"/></td>
+                                    <td><span t-field="doc.confirmed_date"/></td>
+                                    <td><span t-field="doc.approved_date"/></td>
+                                    <td><span t-field="doc.delivered_date"/></td>
+                                    <td><span t-field="doc.received_date"/></td>
+                                    <td><span t-field="doc.rejected_date"/></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+
